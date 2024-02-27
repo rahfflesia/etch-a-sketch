@@ -1,6 +1,6 @@
 //Code for 16x16 Grid
 const canvas = document.querySelector('.canvas');
-gridSize();
+let canvasSquare;
 
 function gridSize(sideLength = 16){
     let squareArea = 500 / sideLength;
@@ -9,7 +9,7 @@ function gridSize(sideLength = 16){
         row.setAttribute('style','width:500px');
         canvas.appendChild(row);
         for(let j = 0; j < sideLength; j++){
-            const square = document.createElement('div');
+            let square = document.createElement('div');
             square.setAttribute('style', 'border:solid 1.5px gray;');
             square.style.width = squareArea + "px";
             square.style.height = squareArea + "px";
@@ -17,25 +17,35 @@ function gridSize(sideLength = 16){
             row.appendChild(square);
         }
     }
+    canvasSquare = document.querySelectorAll('.square');
 }
 
-let canvasSquare = document.querySelectorAll('.square');
-
-canvasSquare.forEach(function(square){
-    square.addEventListener('mouseover', () => {
-        square.style.backgroundColor = "#000000";
-    })
-});
+gridSize();
 
 const resetCanvasButton = document.querySelector('.reset-canvas');
 
 resetCanvasButton.addEventListener('click', () => {
-    canvasSquare.forEach(function(square){
-        square.style.backgroundColor = "white";
-    });
+    for(let i = 0; i < canvasSquare.length; i++){
+        let item = canvasSquare[i];
+        item.style.backgroundColor = "white";
+    }
 });
 
+let changeGridSize = document.querySelector('.grid-size');
 
+changeGridSize.addEventListener('click', () => {
+    while (canvas.firstChild){
+        canvas.removeChild(canvas.lastChild);
+    }
+    let userInput = prompt("Enter the new grid size");
+    gridSize(userInput);
+});
+
+canvas.addEventListener('mouseover', (event) => {
+    if(event.target.classList.contains('square')){
+        event.target.style.backgroundColor = "black";
+    }
+});
 
 
 
