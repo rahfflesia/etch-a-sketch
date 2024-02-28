@@ -31,7 +31,7 @@ resetCanvasButton.addEventListener('click', () => {
     }
 });
 
-let changeGridSize = document.querySelector('.grid-size');
+const changeGridSize = document.querySelector('.grid-size');
 
 changeGridSize.addEventListener('click', () => {
     while (canvas.firstChild){
@@ -46,6 +46,30 @@ canvas.addEventListener('mouseover', (event) => {
         event.target.style.backgroundColor = "black";
     }
 });
+
+const eraser = document.querySelector('.eraser');
+
+eraser.addEventListener('click', () => {
+    canvas.addEventListener('mouseover', (event) => {
+        if(event.target.classList.contains('square')){
+            event.target.style.backgroundColor = "white";
+        }
+    });
+})
+
+const monochrome = document.querySelector('.monochrome');
+
+monochrome.addEventListener('click', () => {
+    canvas.addEventListener('mouseover', (event) => {
+        if(event.target.classList.contains('square')){
+            event.target.style.backgroundColor = "black";
+        }
+    });
+})
+
+
+
+
 
 
 
