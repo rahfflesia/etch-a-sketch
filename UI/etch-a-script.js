@@ -65,7 +65,25 @@ monochrome.addEventListener('click', () => {
             event.target.style.backgroundColor = "black";
         }
     });
-})
+});
+
+const colorful = document.querySelector('.colorful');
+
+function getRandomValues(){
+    return Math.floor(Math.random() * 255);
+}
+
+colorful.addEventListener('click', () =>{
+    canvas.addEventListener('mouseover', (event) => {
+        if(event.target.classList.contains('square')){
+            let red = getRandomValues();
+            let green = getRandomValues();
+            let blue = getRandomValues();
+            event.target.style.backgroundColor = "rgb(" + red + "," + green + "," + blue + ")";
+        }
+    });
+});
+
 
 
 
